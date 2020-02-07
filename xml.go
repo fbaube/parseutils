@@ -58,13 +58,7 @@ func DoParse_xml(s string) (xtokens []xml.Token, err error) {
 
 	for {
 		T, e = parser.Token()
-		// fmt.Printf("%+v, %s, %s \n", token, tokenType, tokenString)
-		if e == io.EOF {
-			// if ExtraInfo {
-				println("==> xml tokenization eof ok")
-			// }
-			break
-		}
+		if e == io.EOF { break }
 		if e != nil {
 			return xtokens, fmt.Errorf("pu.xml.doParse: %w", e)
 		}
