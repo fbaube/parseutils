@@ -145,7 +145,7 @@ return nil
 }
 
 var NodeTypeString = []string {
-	"Err", "Txt", "Doc", "Elm", "Cmt", "DcT", 
+	"Err", "Txt", "Doc", "Elm", "Cmt", "Doctype", 
 }
 
 func NTstring(nt html.NodeType) string {
