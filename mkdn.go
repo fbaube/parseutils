@@ -5,6 +5,7 @@ import (
 	"github.com/sanity-io/litter"
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
+	_ "github.com/yuin/goldmark/extension/ast"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	RRR "github.com/yuin/goldmark/renderer"
@@ -71,6 +72,8 @@ func DoParseTree_mkdn(s string) (ast.Node, text.Reader, error) {
 			extension.Footnote,
 			extension.Strikethrough,
 			extension.Table,
+			extension.Linkify,
+			extension.TaskList,
 		),
 		GM.WithParserOptions(
 			parser.WithAutoHeadingID(),
