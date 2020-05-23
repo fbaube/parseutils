@@ -117,7 +117,7 @@ type wf_aWalker_mkdn func(n ast.Node, entering bool) // returns (ast.WalkStatus,
 
 // wf_gatherTreeNodes_mkdn is ::
 // type ast.Walker func(n Node, entering bool) (WalkStatus, error)
-// NOTE that `ast.Node` is an interface!
+// NOTE `ast.Node` is an interface!
 func wf_gatherTreeNodes_mkdn(n ast.Node, in bool) (ast.WalkStatus, error) {
 	if in {
 		mnWalkLevel += 1
@@ -172,8 +172,8 @@ func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {
 	// fmt.Printf("    MD: %+v \n", *mdRoot)
 	println("==BEG== DumpNode:BF:Root")
 	// FIXME gparse.DumpBFnode(mdRoot, 0)
-	println("==MID== DumpNode:BF:Root")
-	NormalizeTextLeaves(mdRoot)
+	 * 	 println("==MID== DumpNode:BF:Root")
+	 * 	 NormalizeTextLeaves(mdRoot)
 	// FIXME gparse.DumpBFnode(mdRoot, 0)
 	println("==END== DumpNode:BF:Root")
 
