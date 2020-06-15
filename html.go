@@ -10,7 +10,7 @@ type ConcreteParseResults_html struct {
   ParseTree    *html.Node
   NodeList   []*html.Node
   NodeDepths []int
-	Raw string
+	CPR_raw      string
 }
 
 func GetParseResults_html(s string) (*ConcreteParseResults_html, error) {
@@ -30,7 +30,7 @@ func GetParseResults_html(s string) (*ConcreteParseResults_html, error) {
 	p.ParseTree  = root
 	p.NodeList   = nl
 	p.NodeDepths = il
-	p.Raw = s
+	p.CPR_raw    = s
 	return p, nil
 }
 
@@ -145,7 +145,7 @@ return nil
 }
 
 var NodeTypeString = []string {
-	"Err", "Txt", "Doc", "Elm", "Cmt", "Doctype", 
+	"Err", "Txt", "Doc", "Elm", "Cmt", "Doctype",
 }
 
 func NTstring(nt html.NodeType) string {

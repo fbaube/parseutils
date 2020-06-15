@@ -19,8 +19,8 @@ type ConcreteParseResults_mkdn struct {
   ParseTree    ast.Node
   NodeList   []ast.Node
   NodeDepths []int
-	Reader text.Reader
-	Raw string
+	Reader  text.Reader
+	CPR_raw      string
 }
 
 // mn = MarkdownNode
@@ -56,8 +56,8 @@ func GetParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) {
 	p.ParseTree  = root
 	p.NodeList   = nl
 	p.NodeDepths = il
-	p.Reader = rdr
-	p.Raw = s
+	p.Reader     = rdr
+	p.CPR_raw    = s
 	return p, nil
 }
 
