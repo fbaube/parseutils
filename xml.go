@@ -9,9 +9,9 @@ import (
 )
 
 type ConcreteParseResults_xml struct {
-  // ParseTree ??
-  NodeList   []xml.Token
-  NodeDepths []int
+	// ParseTree ??
+	NodeList   []xml.Token
+	NodeDepths []int
 	CPR_raw    string
 }
 
@@ -32,6 +32,14 @@ func GetParseResults_xml(s string) (*ConcreteParseResults_xml, error) {
 // discard it after use cos the caller has another copy of it.
 // To be safe, it copies every token using `xml.CopyToken(T)`.
 func DoParse_xml(s string) (xtokens []xml.Token, err error) {
+	return doParse_xml_maybeRaw(s, false)
+}
+
+func DoParseRaw_xml(s string) (xtokens []xml.Token, err error) {
+	return doParse_xml_maybeRaw(s, true)
+}
+
+func doParse_xml_maybeRaw(s string, doRaw bool) (xtokens []xml.Token, err error) {
 	var e error
 	var T, TT xml.Token
 	xtokens = make([]xml.Token, 0, 100)
@@ -58,8 +66,14 @@ func DoParse_xml(s string) (xtokens []xml.Token, err error) {
 	parser.Entity = xml.HTMLEntity
 
 	for {
-		T, e = parser.Token()
-		if e == io.EOF { break }
+		if doRaw {
+			T, e = parser.RawToken()
+		} else {
+			T, e = parser.Token()
+		}
+		if e == io.EOF {
+			break
+		}
 		if e != nil {
 			return xtokens, fmt.Errorf("pu.xml.doParse: %w", e)
 		}
