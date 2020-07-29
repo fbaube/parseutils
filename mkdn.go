@@ -2,11 +2,12 @@ package parseutils
 
 import (
 	"fmt"
+
 	"github.com/sanity-io/litter"
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
-	_ "github.com/yuin/goldmark/extension/ast"
 	"github.com/yuin/goldmark/extension"
+	_ "github.com/yuin/goldmark/extension/ast"
 	"github.com/yuin/goldmark/parser"
 	RRR "github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/renderer/html"
@@ -16,17 +17,17 @@ import (
 // ConcreteParseResults_mkdn is a bit dodgy cos
 // `ast.Node` is an interface, not a struct.
 type ConcreteParseResults_mkdn struct {
-  ParseTree    ast.Node
-  NodeList   []ast.Node
-  NodeDepths []int
-	Reader  text.Reader
-	CPR_raw      string
+	ParseTree  ast.Node
+	NodeList   []ast.Node
+	NodeDepths []int
+	Reader     text.Reader
+	CPR_raw    string
 }
 
 // mn = MarkdownNode
-var mnList    []ast.Node
-var mnDepths  []int
-var mnError     error
+var mnList []ast.Node
+var mnDepths []int
+var mnError error
 var mnWalkLevel int
 
 // var theSRC []byte // string
@@ -38,7 +39,7 @@ var r RRR.Renderer
 
 var MNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 
-func GetParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) {
+func GetConcreteParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) {
 	var root ast.Node
 	var rdr text.Reader
 	var e error
@@ -53,11 +54,11 @@ func GetParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) {
 		return nil, fmt.Errorf("pu.mkdn.parseResults.flattenTree: %w", e)
 	}
 	p := new(ConcreteParseResults_mkdn)
-	p.ParseTree  = root
-	p.NodeList   = nl
+	p.ParseTree = root
+	p.NodeList = nl
 	p.NodeDepths = il
-	p.Reader     = rdr
-	p.CPR_raw    = s
+	p.Reader = rdr
+	p.CPR_raw = s
 	return p, nil
 }
 
@@ -125,7 +126,7 @@ func wf_gatherTreeNodes_mkdn(n ast.Node, in bool) (ast.WalkStatus, error) {
 		mnWalkLevel -= 1
 		return ast.WalkContinue, nil
 	}
-	mnList   = append(mnList, n)
+	mnList = append(mnList, n)
 	mnDepths = append(mnDepths, mnWalkLevel)
 	return ast.WalkContinue, nil
 }
@@ -137,11 +138,11 @@ func (pCPR *ConcreteParseResults_mkdn) GetAllByTag(s string) []ast.Node {
 	if s == "" {
 		return nil
 	}
-  var ret = make([]ast.Node,0)
+	var ret = make([]ast.Node, 0)
 	for _, p := range pCPR.NodeList {
-    panic(fmt.Sprintf("OOPS: %p", p))
-  }
-  return ret
+		panic(fmt.Sprintf("OOPS: %p", p))
+	}
+	return ret
 }
 
 func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {

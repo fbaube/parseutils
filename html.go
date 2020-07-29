@@ -3,17 +3,18 @@ package parseutils
 import (
 	"fmt"
 	S "strings"
+
 	"golang.org/x/net/html"
 )
 
 type ConcreteParseResults_html struct {
-  ParseTree    *html.Node
-  NodeList   []*html.Node
-  NodeDepths []int
-	CPR_raw      string
+	ParseTree  *html.Node
+	NodeList   []*html.Node
+	NodeDepths []int
+	CPR_raw    string
 }
 
-func GetParseResults_html(s string) (*ConcreteParseResults_html, error) {
+func GetConcreteParseResults_html(s string) (*ConcreteParseResults_html, error) {
 	var root *html.Node
 	var e error
 	root, e = DoParseTree_html(s)
@@ -27,10 +28,10 @@ func GetParseResults_html(s string) (*ConcreteParseResults_html, error) {
 		return nil, fmt.Errorf("pu.html.parseResults.flattenTree: %w", e)
 	}
 	p := new(ConcreteParseResults_html)
-	p.ParseTree  = root
-	p.NodeList   = nl
+	p.ParseTree = root
+	p.NodeList = nl
 	p.NodeDepths = il
-	p.CPR_raw    = s
+	p.CPR_raw = s
 	return p, nil
 }
 
@@ -86,7 +87,7 @@ func wf_gatherTreeNodes_html(n *html.Node, in bool) {
 		hnWalkLevel -= 1
 		return
 	}
-	hnList   = append(hnList, n)
+	hnList = append(hnList, n)
 	hnDepths = append(hnDepths, hnWalkLevel)
 }
 
@@ -94,11 +95,11 @@ func (pCPR *ConcreteParseResults_html) GetAllByAnyTag(ss []string) []*html.Node 
 	if ss == nil || len(ss) == 0 {
 		return nil
 	}
-  var ret = make([]*html.Node, 0)
+	var ret = make([]*html.Node, 0)
 	for _, p := range pCPR.NodeList {
-    panic(fmt.Sprintf("OOPS: %p", p))
-  }
-  return ret
+		panic(fmt.Sprintf("OOPS: %p", p))
+	}
+	return ret
 }
 
 // GetAllByTag returns a slice of `*html.Node`. It checks the basic tag only,
@@ -108,11 +109,11 @@ func (pCPR *ConcreteParseResults_html) GetAllByTag(s string) []*html.Node {
 	if s == "" {
 		return nil
 	}
-  var ret = make([]*html.Node, 0)
+	var ret = make([]*html.Node, 0)
 	for _, p := range pCPR.NodeList {
-    panic(fmt.Sprintf("OOPS: %p", p))
-  }
-  return ret
+		panic(fmt.Sprintf("OOPS: %p", p))
+	}
+	return ret
 }
 
 func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
@@ -122,29 +123,29 @@ func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
 		// litter.Dump(attr)
 		// if ok,_ := []uint8{
 		/* =================================
-		strattr := new(strattribute)
-		strattr.Name = string(attr.Name)
-		switch attr.Value.(type) {
-		case []uint8:
-			strattr.Value = string(attr.Value.([]uint8))
-		case [][]uint8:
-			strattr.Value = ""
-			var bbbb [][]byte
-			var bb []byte
-			bbbb = attr.Value.([][]byte)
-			for _, bb = range bbbb {
-				strattr.Value += string(bb) // attr.Value.([]uint8))
+			strattr := new(strattribute)
+			strattr.Name = string(attr.Name)
+			switch attr.Value.(type) {
+			case []uint8:
+				strattr.Value = string(attr.Value.([]uint8))
+			case [][]uint8:
+				strattr.Value = ""
+				var bbbb [][]byte
+				var bb []byte
+				bbbb = attr.Value.([][]byte)
+				for _, bb = range bbbb {
+					strattr.Value += string(bb) // attr.Value.([]uint8))
+				}
 			}
+			stratts = append(stratts, *strattr)
 		}
-		stratts = append(stratts, *strattr)
+		return stratts
+		*/
 	}
-	return stratts
-	*/
-	}
-return nil
+	return nil
 }
 
-var NodeTypeString = []string {
+var NodeTypeString = []string{
 	"Err", "Txt", "Doc", "Elm", "Cmt", "Doctype",
 }
 
@@ -152,7 +153,7 @@ func NTstring(nt html.NodeType) string {
 	return NodeTypeString[nt]
 }
 
-	/*
+/*
 	type html.Node struct {
     Parent, FirstChild, LastChild, PrevSibling, NextSibling *Node
 
