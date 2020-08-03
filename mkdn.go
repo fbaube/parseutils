@@ -3,7 +3,6 @@ package parseutils
 import (
 	"fmt"
 
-	"github.com/sanity-io/litter"
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
@@ -89,7 +88,7 @@ func DoParseTree_mkdn(s string) (ast.Node, text.Reader, error) {
 	var TheParser parser.Parser
 	var TheParseTree ast.Node
 	TheSourceBfr = []byte(s) // p.CheckedPath.Raw)
-	println("TheSource:", litter.Sdump(s))
+	// println("TheSource:", litter.Sdump(s))
 	// r = GM.DefaultRenderer() // GoldMarkDown.Renderer().(html.Renderer)
 	r = GoldMarkDown.Renderer()
 	TheParser = GoldMarkDown.Parser()
@@ -168,27 +167,3 @@ func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {
 	}
 	return KVpairs
 }
-
-/*
-	// fmt.Printf("    MD: %+v \n", *mdRoot)
-	println("==BEG== DumpNode:BF:Root")
-	// FIXME gparse.DumpBFnode(mdRoot, 0)
-	 * 	 println("==MID== DumpNode:BF:Root")
-	 * 	 NormalizeTextLeaves(mdRoot)
-	// FIXME gparse.DumpBFnode(mdRoot, 0)
-	println("==END== DumpNode:BF:Root")
-
-func (p MarkdownAST) Echo() string {
-	return "MKDN ECHO" // p.Node.String()
-}
-func (p MarkdownAST) EchoTo(w io.Writer) {
-	w.Write([]byte(p.Echo()))
-}
-func (p MarkdownAST) String() string {
-	// return p.Node.String()
-	return fmt.Sprintf("%+v", p)
-}
-func (p MarkdownAST) DumpTo(w io.Writer) {
-	w.Write([]byte(p.String()))
-}
-*/
