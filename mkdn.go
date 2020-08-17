@@ -2,6 +2,7 @@ package parseutils
 
 import (
 	"fmt"
+	"io"
 
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
@@ -21,6 +22,7 @@ type ConcreteParseResults_mkdn struct {
 	NodeDepths []int
 	Reader     text.Reader
 	CPR_raw    string
+	DumpDest   io.Writer
 }
 
 // mn = MarkdownNode

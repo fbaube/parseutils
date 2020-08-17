@@ -2,6 +2,7 @@ package parseutils
 
 import (
 	"fmt"
+	"io"
 	S "strings"
 
 	"golang.org/x/net/html"
@@ -12,6 +13,7 @@ type ConcreteParseResults_html struct {
 	NodeList   []*html.Node
 	NodeDepths []int
 	CPR_raw    string
+	DumpDest   io.Writer
 }
 
 func GetConcreteParseResults_html(s string) (*ConcreteParseResults_html, error) {
