@@ -2,8 +2,8 @@ package parseutils
 
 import (
 	"fmt"
-	"io"
 
+	XM "github.com/fbaube/xmlmodels"
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
@@ -17,12 +17,10 @@ import (
 // ConcreteParseResults_mkdn is a bit dodgy cos
 // `ast.Node` is an interface, not a struct.
 type ConcreteParseResults_mkdn struct {
-	ParseTree  ast.Node
-	NodeList   []ast.Node
-	NodeDepths []int
-	Reader     text.Reader
-	CPR_raw    string
-	DumpDest   io.Writer
+	ParseTree ast.Node
+	NodeList  []ast.Node
+	Reader    text.Reader
+	XM.CommonCPR
 }
 
 // mn = MarkdownNode

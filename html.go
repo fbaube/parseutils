@@ -2,18 +2,16 @@ package parseutils
 
 import (
 	"fmt"
-	"io"
 	S "strings"
 
+	XM "github.com/fbaube/xmlmodels"
 	"golang.org/x/net/html"
 )
 
 type ConcreteParseResults_html struct {
-	ParseTree  *html.Node
-	NodeList   []*html.Node
-	NodeDepths []int
-	CPR_raw    string
-	DumpDest   io.Writer
+	ParseTree *html.Node
+	NodeList  []*html.Node
+	XM.CommonCPR
 }
 
 func GetConcreteParseResults_html(s string) (*ConcreteParseResults_html, error) {
