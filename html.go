@@ -23,14 +23,20 @@ func GetConcreteParseResults_html(s string) (*ConcreteParseResults_html, error) 
 	}
 	var nl []*html.Node
 	var il []int
-	nl, il, e = FlattenParseTree_html(root)
+	var fp []*XM.FilePosition
+	nl, il, fp, e = FlattenParseTree_html(root)
 	if e != nil {
 		return nil, fmt.Errorf("pu.html.parseResults.flattenTree: %w", e)
 	}
 	p := new(ConcreteParseResults_html)
+	p.CommonCPR = *XM.NewCommonCPR()
 	p.ParseTree = root
 	p.NodeList = nl
 	p.NodeDepths = il
+	p.FilePosns = fp
+	if fp == nil {
+		panic("OOPS fp")
+	}
 	p.CPR_raw = s
 	return p, nil
 }
@@ -52,14 +58,16 @@ var HNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 // hn = HTML Node
 var hnList []*html.Node
 var hnDepths []int
+var hnFPosns []*XM.FilePosition
 var hnError error
 var hnWalkLevel int
 
-func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, error) {
+func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*XM.FilePosition, error) {
 	hnList = make([]*html.Node, 0)
 	hnDepths = make([]int, 0)
+	hnFPosns = make([]*XM.FilePosition, 0)
 	HtmlWalk(pHN, wf_gatherTreeNodes_html)
-	return hnList, hnDepths, hnError
+	return hnList, hnDepths, hnFPosns, hnError
 }
 
 // wf_aWalker_html is a func type called when walking a tree of `html.Node`.
@@ -89,6 +97,7 @@ func wf_gatherTreeNodes_html(n *html.Node, in bool) {
 	}
 	hnList = append(hnList, n)
 	hnDepths = append(hnDepths, hnWalkLevel)
+	hnFPosns = append(hnFPosns, &XM.FilePosition{0, 0, 0})
 }
 
 func (pCPR *ConcreteParseResults_html) GetAllByAnyTag(ss []string) []*html.Node {

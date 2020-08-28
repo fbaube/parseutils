@@ -26,6 +26,7 @@ type ConcreteParseResults_mkdn struct {
 // mn = MarkdownNode
 var mnList []ast.Node
 var mnDepths []int
+var mnFilPosns []*XM.FilePosition
 var mnError error
 var mnWalkLevel int
 
@@ -48,14 +49,17 @@ func GetConcreteParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) 
 	}
 	var nl []ast.Node
 	var il []int
-	nl, il, e = FlattenParseTree_mkdn(root)
+	var fp []*XM.FilePosition
+	nl, il, fp, e = FlattenParseTree_mkdn(root)
 	if e != nil {
 		return nil, fmt.Errorf("pu.mkdn.parseResults.flattenTree: %w", e)
 	}
 	p := new(ConcreteParseResults_mkdn)
+	p.CommonCPR = *XM.NewCommonCPR()
 	p.ParseTree = root
 	p.NodeList = nl
 	p.NodeDepths = il
+	p.FilePosns = fp
 	p.Reader = rdr
 	p.CPR_raw = s
 	return p, nil
@@ -100,14 +104,15 @@ func DoParseTree_mkdn(s string) (ast.Node, text.Reader, error) {
 	return TheParseTree, TheReader, nil // pMTokzn, nil
 }
 
-func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, error) {
+func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, []*XM.FilePosition, error) {
 	mnList = make([]ast.Node, 0)
 	mnDepths = make([]int, 0)
+	mnFilPosns = make([]*XM.FilePosition, 0)
 	e := ast.Walk(pMN, wf_gatherTreeNodes_mkdn)
 	if e != nil {
 		panic(e)
 	}
-	return mnList, mnDepths, nil
+	return mnList, mnDepths, mnFilPosns, nil
 }
 
 // wf_aWalker_mkdn is a func type called when walking a tree of `ast.Node`.
@@ -127,6 +132,7 @@ func wf_gatherTreeNodes_mkdn(n ast.Node, in bool) (ast.WalkStatus, error) {
 	}
 	mnList = append(mnList, n)
 	mnDepths = append(mnDepths, mnWalkLevel)
+	mnFilPosns = append(mnFilPosns, &XM.FilePosition{0, 0, 0})
 	return ast.WalkContinue, nil
 }
 
