@@ -8,13 +8,13 @@ import (
 	"golang.org/x/net/html"
 )
 
-type ConcreteParseResults_html struct {
-	ParseTree *html.Node
-	NodeList  []*html.Node
+type ParserResults_html struct {
+	RootNode  *html.Node
+	NodeSlice []*html.Node
 	XM.CommonCPR
 }
 
-func GetConcreteParseResults_html(s string) (*ConcreteParseResults_html, error) {
+func GenerateParserResults_html(s string) (*ParserResults_html, error) {
 	var root *html.Node
 	var e error
 	root, e = DoParseTree_html(s)
@@ -28,10 +28,10 @@ func GetConcreteParseResults_html(s string) (*ConcreteParseResults_html, error) 
 	if e != nil {
 		return nil, fmt.Errorf("pu.html.parseResults.flattenTree: %w", e)
 	}
-	p := new(ConcreteParseResults_html)
+	p := new(ParserResults_html)
 	p.CommonCPR = *XM.NewCommonCPR()
-	p.ParseTree = root
-	p.NodeList = nl
+	p.RootNode = root
+	p.NodeSlice = nl
 	p.NodeDepths = il
 	p.FilePosns = fp
 	if fp == nil {
@@ -100,12 +100,12 @@ func wf_gatherTreeNodes_html(n *html.Node, in bool) {
 	hnFPosns = append(hnFPosns, &XM.FilePosition{0, 0, 0})
 }
 
-func (pCPR *ConcreteParseResults_html) GetAllByAnyTag(ss []string) []*html.Node {
+func (pCPR *ParserResults_html) GetAllByAnyTag(ss []string) []*html.Node {
 	if ss == nil || len(ss) == 0 {
 		return nil
 	}
 	var ret = make([]*html.Node, 0)
-	for _, p := range pCPR.NodeList {
+	for _, p := range pCPR.NodeSlice {
 		panic(fmt.Sprintf("OOPS: %p", p))
 	}
 	return ret
@@ -114,12 +114,12 @@ func (pCPR *ConcreteParseResults_html) GetAllByAnyTag(ss []string) []*html.Node 
 // GetAllByTag returns a slice of `*html.Node`. It checks the basic tag only,
 // not any namespace. Note that these tag lookup func's default to searching
 // the `ListNodesP`, not the tree of `Node`s.
-func (pCPR *ConcreteParseResults_html) GetAllByTag(s string) []*html.Node {
+func (pCPR *ParserResults_html) GetAllByTag(s string) []*html.Node {
 	if s == "" {
 		return nil
 	}
 	var ret = make([]*html.Node, 0)
-	for _, p := range pCPR.NodeList {
+	for _, p := range pCPR.NodeSlice {
 		panic(fmt.Sprintf("OOPS: %p", p))
 	}
 	return ret

@@ -14,11 +14,11 @@ import (
 	"github.com/yuin/goldmark/text"
 )
 
-// ConcreteParseResults_mkdn is a bit dodgy cos
+// ParserResults_mkdn is a bit dodgy cos
 // `ast.Node` is an interface, not a struct.
-type ConcreteParseResults_mkdn struct {
-	ParseTree ast.Node
-	NodeList  []ast.Node
+type ParserResults_mkdn struct {
+	RootNode  ast.Node
+	NodeSlice []ast.Node
 	Reader    text.Reader
 	XM.CommonCPR
 }
@@ -39,7 +39,7 @@ var r RRR.Renderer
 
 var MNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 
-func GetConcreteParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) {
+func GenerateParserResults_mkdn(s string) (*ParserResults_mkdn, error) {
 	var root ast.Node
 	var rdr text.Reader
 	var e error
@@ -54,10 +54,10 @@ func GetConcreteParseResults_mkdn(s string) (*ConcreteParseResults_mkdn, error) 
 	if e != nil {
 		return nil, fmt.Errorf("pu.mkdn.parseResults.flattenTree: %w", e)
 	}
-	p := new(ConcreteParseResults_mkdn)
+	p := new(ParserResults_mkdn)
 	p.CommonCPR = *XM.NewCommonCPR()
-	p.ParseTree = root
-	p.NodeList = nl
+	p.RootNode = root
+	p.NodeSlice = nl
 	p.NodeDepths = il
 	p.FilePosns = fp
 	p.Reader = rdr
@@ -139,12 +139,12 @@ func wf_gatherTreeNodes_mkdn(n ast.Node, in bool) (ast.WalkStatus, error) {
 // GetAllByTag returns a slice of `ast.Node`. It checks the basic tag only,
 // not any namespace. Note that these tag lookup func's default to searching
 // the `ListNodesP`, not the tree of `Node`s.
-func (pCPR *ConcreteParseResults_mkdn) GetAllByTag(s string) []ast.Node {
+func (pCPR *ParserResults_mkdn) GetAllByTag(s string) []ast.Node {
 	if s == "" {
 		return nil
 	}
 	var ret = make([]ast.Node, 0)
-	for _, p := range pCPR.NodeList {
+	for _, p := range pCPR.NodeSlice {
 		panic(fmt.Sprintf("OOPS: %p", p))
 	}
 	return ret
