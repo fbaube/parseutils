@@ -155,7 +155,8 @@ func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
 }
 
 var NodeTypeString = []string{
-	"Err", "Txt", "Doc", "Elm", "Cmt", "Doctype",
+	// "Err", "Txt", "Doc", "Elm", "Cmt", "Doctype",
+	"Err", "ChD", "Doc", "Elm", "Cmt", "Doctype",
 }
 
 func NTstring(nt html.NodeType) string {
