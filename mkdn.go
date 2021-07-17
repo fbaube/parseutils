@@ -3,7 +3,7 @@ package parseutils
 import (
 	"fmt"
 
-	XM "github.com/fbaube/xmlmodels"
+	XU "github.com/fbaube/xmlutils"
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
@@ -20,13 +20,13 @@ type ParserResults_mkdn struct {
 	RootNode  ast.Node
 	NodeSlice []ast.Node
 	Reader    text.Reader
-	XM.CommonCPR
+	XU.CommonCPR
 }
 
 // mn = MarkdownNode
 var mnList []ast.Node
 var mnDepths []int
-var mnFilPosns []*XM.FilePosition
+var mnFilPosns []*XU.FilePosition
 var mnError error
 var mnWalkLevel int
 
@@ -49,13 +49,13 @@ func GenerateParserResults_mkdn(s string) (*ParserResults_mkdn, error) {
 	}
 	var nl []ast.Node
 	var il []int
-	var fp []*XM.FilePosition
+	var fp []*XU.FilePosition
 	nl, il, fp, e = FlattenParseTree_mkdn(root)
 	if e != nil {
 		return nil, fmt.Errorf("pu.mkdn.parseResults.flattenTree: %w", e)
 	}
 	p := new(ParserResults_mkdn)
-	p.CommonCPR = *XM.NewCommonCPR()
+	p.CommonCPR = *XU.NewCommonCPR()
 	p.RootNode = root
 	p.NodeSlice = nl
 	p.NodeDepths = il
@@ -104,10 +104,10 @@ func DoParseTree_mkdn(s string) (ast.Node, text.Reader, error) {
 	return TheParseTree, TheReader, nil // pMTokzn, nil
 }
 
-func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, []*XM.FilePosition, error) {
+func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, []*XU.FilePosition, error) {
 	mnList = make([]ast.Node, 0)
 	mnDepths = make([]int, 0)
-	mnFilPosns = make([]*XM.FilePosition, 0)
+	mnFilPosns = make([]*XU.FilePosition, 0)
 	e := ast.Walk(pMN, wf_gatherTreeNodes_mkdn)
 	if e != nil {
 		panic(e)
@@ -132,7 +132,7 @@ func wf_gatherTreeNodes_mkdn(n ast.Node, in bool) (ast.WalkStatus, error) {
 	}
 	mnList = append(mnList, n)
 	mnDepths = append(mnDepths, mnWalkLevel)
-	mnFilPosns = append(mnFilPosns, &XM.FilePosition{0, 0, 0})
+	mnFilPosns = append(mnFilPosns, &XU.FilePosition{0, 0, 0})
 	return ast.WalkContinue, nil
 }
 

@@ -4,14 +4,14 @@ import (
 	"fmt"
 	S "strings"
 
-	XM "github.com/fbaube/xmlmodels"
+	XU "github.com/fbaube/xmlutils"
 	"golang.org/x/net/html"
 )
 
 type ParserResults_html struct {
 	RootNode  *html.Node
 	NodeSlice []*html.Node
-	XM.CommonCPR
+	XU.CommonCPR
 }
 
 func GenerateParserResults_html(s string) (*ParserResults_html, error) {
@@ -23,13 +23,13 @@ func GenerateParserResults_html(s string) (*ParserResults_html, error) {
 	}
 	var nl []*html.Node
 	var il []int
-	var fp []*XM.FilePosition
+	var fp []*XU.FilePosition
 	nl, il, fp, e = FlattenParseTree_html(root)
 	if e != nil {
 		return nil, fmt.Errorf("pu.html.parseResults.flattenTree: %w", e)
 	}
 	p := new(ParserResults_html)
-	p.CommonCPR = *XM.NewCommonCPR()
+	p.CommonCPR = *XU.NewCommonCPR()
 	p.RootNode = root
 	p.NodeSlice = nl
 	p.NodeDepths = il
@@ -58,14 +58,14 @@ var HNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 // hn = HTML Node
 var hnList []*html.Node
 var hnDepths []int
-var hnFPosns []*XM.FilePosition
+var hnFPosns []*XU.FilePosition
 var hnError error
 var hnWalkLevel int
 
-func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*XM.FilePosition, error) {
+func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*XU.FilePosition, error) {
 	hnList = make([]*html.Node, 0)
 	hnDepths = make([]int, 0)
-	hnFPosns = make([]*XM.FilePosition, 0)
+	hnFPosns = make([]*XU.FilePosition, 0)
 	HtmlWalk(pHN, wf_gatherTreeNodes_html)
 	return hnList, hnDepths, hnFPosns, hnError
 }
@@ -97,7 +97,7 @@ func wf_gatherTreeNodes_html(n *html.Node, in bool) {
 	}
 	hnList = append(hnList, n)
 	hnDepths = append(hnDepths, hnWalkLevel)
-	hnFPosns = append(hnFPosns, &XM.FilePosition{0, 0, 0})
+	hnFPosns = append(hnFPosns, &XU.FilePosition{0, 0, 0})
 }
 
 func (pCPR *ParserResults_html) GetAllByAnyTag(ss []string) []*html.Node {
