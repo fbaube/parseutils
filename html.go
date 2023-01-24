@@ -53,7 +53,7 @@ func DoParseTree_html(s string) (*html.Node, error) {
 	return root, nil
 }
 
-var HNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
+// var HNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 
 // hn = HTML Node
 var hnList []*html.Node
@@ -155,8 +155,7 @@ func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
 }
 
 var NodeTypeString = []string{
-	// "Err", "Txt", "Doc", "Elm", "Cmt", "Doctype",
-	"Err", "ChD", "Doc", "Elm", "Cmt", "Doctype",
+	"Error", "CData", "Docmt", "Elmnt", "Comnt", "Doctype",
 }
 
 func NTstring(nt html.NodeType) string {
