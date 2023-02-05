@@ -131,7 +131,7 @@ func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
 		println("HtmlAttr:", "NS", attr.Namespace, "Key", attr.Key, "Val", attr.Val)
 		// litter.Dump(attr)
 		// if ok,_ := []uint8{
-		/* =================================
+		/* more debugging
 			strattr := new(strattribute)
 			strattr.Name = string(attr.Name)
 			switch attr.Value.(type) {
