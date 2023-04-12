@@ -1,7 +1,7 @@
 package parseutils
 
 /* IFC
-type mcfile.NodeStringer interface {
+type mcfile.NodeStringer ifc {
 	NodeEcho(int) string
 	NodeInfo(int) string
 	NodeDebug(int) string
@@ -19,6 +19,35 @@ import (
 	"golang.org/x/net/html"
 	S "strings"
 )
+
+// DataOfHtmlNode returns a string that should be
+// the value of both [Node.Data] and [Node.DataAtom] .
+// If they differ, a warning is issued. Note that if
+// the tag is not recognized, DataAtom is left empty.
+//
+// TODO: Use [strings.Clone] ?
+// .
+func DataOfHtmlNode(n *html.Node) string {
+	datom := n.DataAtom
+	datomS := S.TrimSpace(datom.String())
+	dataS := S.TrimSpace(n.Data)
+	if dataS == datomS {
+		return dataS
+	}
+	if dataS == "" {
+		return datomS
+	}
+	if datomS == "" {
+		return dataS
+	}
+	s := fmt.Sprintf("<<%s>> v <<%s>>", dataS, datomS)
+	if datomS == "" {
+		println("Unknown HTML tag:", dataS)
+	} else {
+		println("HtmlNode data mismatch!:", s)
+	}
+	return s
+}
 
 func (p *ParserResults_html) NodeCount() int {
 	return len(p.NodeSlice)
@@ -65,7 +94,7 @@ func (p *ParserResults_html) NodeDebug(i int) string {
 	}
 	h := *(p.NodeSlice[i])
 	// return fmt.Sprintf("|%+v|", h)
-	return fmt.Sprintf("|tp:%d:%s,(%s:%v),ns:%s,kids:%s,atts:%v|",
-		h.Type, NodeTypeString[h.Type], h.Data, h.DataAtom,
+	return fmt.Sprintf("|tp:%d:%s,data:%s,ns:%s,kids:%s,atts:%v|",
+		h.Type, NodeTypeString[h.Type], DataOfHtmlNode(&h),
 		h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr)
 }
