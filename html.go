@@ -4,6 +4,7 @@ import (
 	"fmt"
 	S "strings"
 
+	CT "github.com/fbaube/ctoken"
 	XU "github.com/fbaube/xmlutils"
 	"golang.org/x/net/html"
 )
@@ -23,7 +24,7 @@ func GenerateParserResults_html(s string) (*ParserResults_html, error) {
 	}
 	var nl []*html.Node
 	var il []int
-	var fp []*XU.FilePosition
+	var fp []*CT.FilePosition
 	nl, il, fp, e = FlattenParseTree_html(root)
 	if e != nil {
 		return nil, fmt.Errorf("pu.html.parseResults.flattenTree: %w", e)
@@ -58,14 +59,14 @@ func DoParseTree_html(s string) (*html.Node, error) {
 // hn = HTML Node
 var hnList []*html.Node
 var hnDepths []int
-var hnFPosns []*XU.FilePosition
+var hnFPosns []*CT.FilePosition
 var hnError error
 var hnWalkLevel int
 
-func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*XU.FilePosition, error) {
+func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*CT.FilePosition, error) {
 	hnList = make([]*html.Node, 0)
 	hnDepths = make([]int, 0)
-	hnFPosns = make([]*XU.FilePosition, 0)
+	hnFPosns = make([]*CT.FilePosition, 0)
 	HtmlWalk(pHN, wf_gatherTreeNodes_html)
 	return hnList, hnDepths, hnFPosns, hnError
 }
@@ -97,32 +98,7 @@ func wf_gatherTreeNodes_html(n *html.Node, in bool) {
 	}
 	hnList = append(hnList, n)
 	hnDepths = append(hnDepths, hnWalkLevel)
-	hnFPosns = append(hnFPosns, &XU.FilePosition{0, 0, 0})
-}
-
-func (pCPR *ParserResults_html) GetAllByAnyTag(ss []string) []*html.Node {
-	if ss == nil || len(ss) == 0 {
-		return nil
-	}
-	var ret = make([]*html.Node, 0)
-	for _, p := range pCPR.NodeSlice {
-		panic(fmt.Sprintf("OOPS: %p", p))
-	}
-	return ret
-}
-
-// GetAllByTag returns a slice of `*html.Node`. It checks the basic tag only,
-// not any namespace. Note that these tag lookup func's default to searching
-// the `ListNodesP`, not the tree of `Node`s.
-func (pCPR *ParserResults_html) GetAllByTag(s string) []*html.Node {
-	if s == "" {
-		return nil
-	}
-	var ret = make([]*html.Node, 0)
-	for _, p := range pCPR.NodeSlice {
-		panic(fmt.Sprintf("OOPS: %p", p))
-	}
-	return ret
+	hnFPosns = append(hnFPosns, &CT.FilePosition{0, 0, 0})
 }
 
 func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {

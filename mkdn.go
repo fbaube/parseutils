@@ -3,6 +3,7 @@ package parseutils
 import (
 	"fmt"
 
+	CT "github.com/fbaube/ctoken"
 	XU "github.com/fbaube/xmlutils"
 	GM "github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
@@ -26,7 +27,7 @@ type ParserResults_mkdn struct {
 // mn = MarkdownNode
 var mnList []ast.Node
 var mnDepths []int
-var mnFilPosns []*XU.FilePosition
+var mnFilPosns []*CT.FilePosition
 var mnError error
 var mnWalkLevel int
 
@@ -49,7 +50,7 @@ func GenerateParserResults_mkdn(s string) (*ParserResults_mkdn, error) {
 	}
 	var nl []ast.Node
 	var il []int
-	var fp []*XU.FilePosition
+	var fp []*CT.FilePosition
 	nl, il, fp, e = FlattenParseTree_mkdn(root)
 	if e != nil {
 		return nil, fmt.Errorf("pu.mkdn.parseResults.flattenTree: %w", e)
@@ -104,10 +105,10 @@ func DoParseTree_mkdn(s string) (ast.Node, text.Reader, error) {
 	return TheParseTree, TheReader, nil // pMTokzn, nil
 }
 
-func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, []*XU.FilePosition, error) {
+func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, []*CT.FilePosition, error) {
 	mnList = make([]ast.Node, 0)
 	mnDepths = make([]int, 0)
-	mnFilPosns = make([]*XU.FilePosition, 0)
+	mnFilPosns = make([]*CT.FilePosition, 0)
 	e := ast.Walk(pMN, wf_gatherTreeNodes_mkdn)
 	if e != nil {
 		panic(e)
@@ -132,7 +133,7 @@ func wf_gatherTreeNodes_mkdn(n ast.Node, in bool) (ast.WalkStatus, error) {
 	}
 	mnList = append(mnList, n)
 	mnDepths = append(mnDepths, mnWalkLevel)
-	mnFilPosns = append(mnFilPosns, &XU.FilePosition{0, 0, 0})
+	mnFilPosns = append(mnFilPosns, &CT.FilePosition{0, 0, 0})
 	return ast.WalkContinue, nil
 }
 
