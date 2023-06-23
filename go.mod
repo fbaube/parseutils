@@ -1,10 +1,10 @@
 module github.com/fbaube/parseutils
 
-go 1.18
+go 1.20
 
 require (
 	github.com/fbaube/ctoken v0.0.0-20230518060940-6f364ff08c9d
-	github.com/fbaube/stringutils v0.0.0-20230612185027-a01a68c97d21
+	github.com/fbaube/stringutils v0.0.0-20230622210105-a1af04c1f93d
 	github.com/fbaube/xmlutils v0.0.0-20230518061403-2465e549e10a
 	github.com/yuin/goldmark v1.5.4
 	golang.org/x/net v0.11.0

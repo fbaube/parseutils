@@ -6,8 +6,8 @@ github.com/fbaube/logutils v0.0.0-20230607184837-dc04e193943f h1:VTDV8/2yaxUotHO
 github.com/fbaube/logutils v0.0.0-20230607184837-dc04e193943f/go.mod h1:SmFhg4J/pEhoEyLd2BG08Si63qZfeqbThhRmeAEwVb0=
 github.com/fbaube/mlog v0.0.0-20230205182808-c77321da3ff3 h1:7jj0bGJw09SQ9mOIeuDJJ4XYgmgSK2T9PO6PH1c5bdo=
 github.com/fbaube/mlog v0.0.0-20230205182808-c77321da3ff3/go.mod h1:7zMkNQqfN6ZueDR3jAJcDBKJ8fmCGnP/LyfBnQMT4io=
-github.com/fbaube/stringutils v0.0.0-20230612185027-a01a68c97d21 h1:aquvhkOtepVJzY6ZCOEqjYSmZAnHf+Y428W6LfAJTyI=
-github.com/fbaube/stringutils v0.0.0-20230612185027-a01a68c97d21/go.mod h1:pyXNXdLCEtNZyV2GFdbOGiO6nDrH6SVmxp7EG9oISIE=
+github.com/fbaube/stringutils v0.0.0-20230622210105-a1af04c1f93d h1:H8t4vPZzeXk7rQnlmdO9ZDaduKBxb77jmsF/sZfOtS0=
+github.com/fbaube/stringutils v0.0.0-20230622210105-a1af04c1f93d/go.mod h1:pyXNXdLCEtNZyV2GFdbOGiO6nDrH6SVmxp7EG9oISIE=
 github.com/fbaube/wasmutils v0.0.0-20230206184435-0359d2530836 h1:BdIoarwH6oJnCd48OYRsySOnecq74M7VweG+9iXW00c=
 github.com/fbaube/wasmutils v0.0.0-20230206184435-0359d2530836/go.mod h1:zvSKkP2Q1b0bu5IuwmY0b2x4ZXEZMYcG0ClOKublfR0=
 github.com/fbaube/xmlutils v0.0.0-20230518061403-2465e549e10a h1:WKOpf0tZO+vkMgH1mMD0RpQmGGxNPtfpFLuhzf42Nfc=
