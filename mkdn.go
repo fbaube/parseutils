@@ -174,3 +174,47 @@ func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {
 	}
 	return KVpairs
 }
+
+func (p *ParserResults_mkdn) NodeCount() int {
+        return len(p.NodeSlice)
+}
+
+func (p *ParserResults_mkdn) NodeDebug(i int) string {
+        if i >= len(p.NodeSlice) {
+                return "(indexOverrun)"
+	}
+        h := p.NodeSlice[i]
+        return fmt.Sprintf("|%+v|", h)
+        /* return fmt.Sprintf("|tp:%d:%s,data:%s,ns:%s,kids:%s,atts:%v|",
+		h.Type, NodeTypeString[h.Type], DataOfHtmlNode(&h),
+                h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr) */
+}
+
+func (p *ParserResults_mkdn) NodeEcho(i int) string {
+        if i >= len(p.NodeSlice) {
+                return "(indexOverrun)"
+        }
+	return "(MKDN NodeEcho)"
+	/*
+        // var pBB *bytes.Buffer
+        var pSB = new(S.Builder)
+        // FIXME this call is recursive!
+        // html.Render(pSB, p.NodeSlice[i])
+        n := p.NodeSlice[i]
+        FC, LC := n.FirstChild, n.LastChild
+        n.FirstChild, n.LastChild = nil, nil
+        html.Render(pSB, n)
+        n.FirstChild, n.LastChild = FC, LC
+
+        return pSB.String()
+	*/
+}
+
+func (p *ParserResults_mkdn) NodeInfo(i int) string {
+        if i >= len(p.NodeSlice) {
+                return "(indexOverrun)"
+        }
+        return fmt.Sprintf("<h[%d] lv%d,ch%d,%s>",
+                i, p.NodeDepths[i], p.FilePosns[i].Pos, p.NodeDebug(i))
+}
+
