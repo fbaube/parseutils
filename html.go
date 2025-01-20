@@ -9,12 +9,14 @@ import (
 	"golang.org/x/net/html"
 )
 
+// ParserResults_html is the CPT for HTML(5). 
 type ParserResults_html struct {
 	RootNode  *html.Node
 	NodeSlice []*html.Node
 	XU.CommonCPR
 }
 
+// GenerateParserResults_html is TBS. 
 func GenerateParserResults_html(s string) (*ParserResults_html, error) {
 	var root *html.Node
 	var e error
@@ -63,6 +65,7 @@ var hnFPosns []*CT.FilePosition
 var hnError error
 var hnWalkLevel int
 
+// FlattenParseTree_html is TBS.
 func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*CT.FilePosition, error) {
 	hnList = make([]*html.Node, 0)
 	hnDepths = make([]int, 0)
@@ -78,7 +81,7 @@ func FlattenParseTree_html(pHN *html.Node) ([]*html.Node, []int, []*CT.FilePosit
 // If wf_aWalker_html returns error, Walk function immediately stop walking.
 type wf_aWalker_html func(n *html.Node, entering bool) // returns (WalkStatus, error)
 
-// HtmlWalk walks a AST tree by the depth first search algorithm.
+// HtmlWalk walks an AST tree of HTML by the depth first search algorithm.
 func HtmlWalk(n *html.Node, walker wf_aWalker_html) {
 	walker(n, true)
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
@@ -101,6 +104,7 @@ func wf_gatherTreeNodes_html(n *html.Node, in bool) {
 	hnFPosns = append(hnFPosns, &CT.FilePosition{0, 0, 0})
 }
 
+// KVpairsFromAttributes_html is TBS.
 func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
 	//?? var stratts []strattribute
 	for _, attr := range atts {
@@ -130,10 +134,12 @@ func KVpairsFromAttributes_html(atts []html.Attribute) []KVpair {
 	return nil
 }
 
+// NodeTypeString is TBS.
 var NodeTypeString = []string{
 	"Error", "CData", "Docmt", "Elmnt", "Comnt", "Doctype",
 }
 
+// NTstring is TBS. 
 func NTstring(nt html.NodeType) string {
 	return NodeTypeString[nt]
 }

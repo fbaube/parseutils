@@ -16,7 +16,7 @@ import (
 )
 
 // ParserResults_mkdn is a bit dodgy cos
-// `ast.Node` is an interface, not a struct.
+// [ast.Node] is an interface, not a struct.
 type ParserResults_mkdn struct {
 	RootNode  ast.Node
 	NodeSlice []ast.Node
@@ -38,8 +38,9 @@ var TheSourceAfr []byte
 var TheReader text.Reader
 var r RRR.Renderer
 
-var MNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
+// var MNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 
+// GenerateParserResults_mkdn is TBS.
 func GenerateParserResults_mkdn(s string) (*ParserResults_mkdn, error) {
 	var root ast.Node
 	var rdr text.Reader
@@ -105,6 +106,7 @@ func DoParseTree_mkdn(s string) (ast.Node, text.Reader, error) {
 	return TheParseTree, TheReader, nil // pMTokzn, nil
 }
 
+// FlattenParseTree_mkdn is TBS. 
 func FlattenParseTree_mkdn(pMN ast.Node) ([]ast.Node, []int, []*CT.FilePosition, error) {
 	mnList = make([]ast.Node, 0)
 	mnDepths = make([]int, 0)
@@ -151,6 +153,7 @@ func (pCPR *ParserResults_mkdn) GetAllByTag(s string) []ast.Node {
 	return ret
 }
 
+// KVpairsFromAttributes_mkdn is TBS. 
 func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {
 	var KVpairs []KVpair
 	for _, attr := range atts {
@@ -175,6 +178,7 @@ func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {
 	return KVpairs
 }
 
+/*
 func (p *ParserResults_mkdn) NodeCount() int {
         return len(p.NodeSlice)
 }
@@ -187,7 +191,7 @@ func (p *ParserResults_mkdn) NodeDebug(i int) string {
         return fmt.Sprintf("|%+v|", h)
         /* return fmt.Sprintf("|tp:%d:%s,data:%s,ns:%s,kids:%s,atts:%v|",
 		h.Type, NodeTypeString[h.Type], DataOfHtmlNode(&h),
-                h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr) */
+                h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr) ** //
 }
 
 func (p *ParserResults_mkdn) NodeEcho(i int) string {
@@ -207,7 +211,7 @@ func (p *ParserResults_mkdn) NodeEcho(i int) string {
         n.FirstChild, n.LastChild = FC, LC
 
         return pSB.String()
-	*/
+	** //
 }
 
 func (p *ParserResults_mkdn) NodeInfo(i int) string {
@@ -217,4 +221,5 @@ func (p *ParserResults_mkdn) NodeInfo(i int) string {
         return fmt.Sprintf("<h[%d] lv%d,ch%d,%s>",
                 i, p.NodeDepths[i], p.FilePosns[i].Pos, p.NodeDebug(i))
 }
+*/
 

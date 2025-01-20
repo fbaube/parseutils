@@ -5,6 +5,7 @@ import (
 	"golang.org/x/net/html"
 )
 
+// GetAllByAnyTag returns a slice of all tree [*html.Node] that match the tag.
 func (pCPR *ParserResults_html) GetAllByAnyTag(ss []string) []*html.Node {
 	if ss == nil || len(ss) == 0 {
 		return nil
@@ -16,7 +17,7 @@ func (pCPR *ParserResults_html) GetAllByAnyTag(ss []string) []*html.Node {
 	return ret
 }
 
-// GetAllByTag returns a slice of `*html.Node`. It checks the basic tag only,
+// GetAllByTag returns a slice of [*html.Node]. It checks the basic tag only,
 // not any namespace. Note that these tag lookup func's default to searching
 // the `ListNodesP`, not the tree of `Node`s.
 func (pCPR *ParserResults_html) GetAllByTag(s string) []*html.Node {

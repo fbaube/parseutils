@@ -1,3 +1,3 @@
-// package parseutils is awesome, and does not use any logging.
+// package parseutils is awesome. It does not use any logging.
 //
 package parseutils
