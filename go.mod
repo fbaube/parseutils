@@ -1,22 +1,31 @@
 module github.com/fbaube/parseutils
 
-go 1.20
+go 1.23
+
+toolchain go1.23.1
 
 require (
-	github.com/fbaube/ctoken v0.0.0-20230518060940-6f364ff08c9d
-	github.com/fbaube/stringutils v0.0.0-20230622210105-a1af04c1f93d
-	github.com/fbaube/xmlutils v0.0.0-20230518061403-2465e549e10a
-	github.com/yuin/goldmark v1.5.6
-	golang.org/x/net v0.14.0
+	github.com/fbaube/ctoken v0.0.0-20250113212848-89a1656c89a4
+	github.com/fbaube/stringutils v0.0.0-20250120124849-e15d0abeb13c
+	github.com/fbaube/xmlutils v0.0.0-20250118141106-b22aff37b7ef
+	github.com/yuin/goldmark v1.7.8
+	golang.org/x/net v0.34.0
 )
 
 require (
-	github.com/fatih/color v1.15.0 // indirect
-	github.com/fbaube/logutils v0.0.0-20230623084753-053ea535035d // indirect
-	github.com/fbaube/mlog v0.0.0-20230205182808-c77321da3ff3 // indirect
-	github.com/fbaube/wasmutils v0.0.0-20230623084957-b4f528abb99e // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.19 // indirect
-	golang.org/x/sys v0.12.0 // indirect
+	github.com/fatih/color v1.18.0 // indirect
+	github.com/fbaube/dsmnd v0.0.0-20250111125333-2b80f885bfc2 // indirect
+	github.com/fbaube/fileutils v0.0.0-20250108104151-64966db5071b // indirect
+	github.com/fbaube/humanbytes v0.0.0-20250119091546-d58fbfdd444c // indirect
+	github.com/fbaube/logutils v0.0.0-20240425064504-eb572963f0fc // indirect
+	github.com/fbaube/lwdx v0.0.0-20241028093627-8a7133fbc931 // indirect
+	github.com/fbaube/miscutils v0.0.0-20250121061531-3eeb9462af67 // indirect
+	github.com/fbaube/mlog v0.0.0-20240425064535-3b89e3b28a76 // indirect
+	github.com/fbaube/wasmutils v0.0.0-20231209183154-e25018375bc2 // indirect
+	github.com/mattn/go-colorable v0.1.14 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mgutz/str v1.2.0 // indirect
+	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

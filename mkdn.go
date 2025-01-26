@@ -38,7 +38,7 @@ var TheSourceAfr []byte
 var TheReader text.Reader
 var r RRR.Renderer
 
-// var MNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
+var MNdTypes = []string{"nil", "Blk", "Inl", "Doc"}
 
 // GenerateParserResults_mkdn is TBS.
 func GenerateParserResults_mkdn(s string) (*ParserResults_mkdn, error) {
