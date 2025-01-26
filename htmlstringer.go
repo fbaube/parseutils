@@ -10,7 +10,7 @@ html.Node.Render(w io.Writer, n *Node) error
 
 import (
 	"fmt"
-	// SU "github.com/fbaube/stringutils"
+	SU "github.com/fbaube/stringutils"
 	"golang.org/x/net/html"
 	S "strings"
 )
@@ -48,7 +48,6 @@ func (p *ParserResults_html) NodeCount() int {
 	return len(p.NodeSlice)
 }
 
-/*
 func (p *ParserResults_html) NodeEcho(i int) string {
 	if i >= len(p.NodeSlice) {
 		return "(indexOverrun)"
@@ -73,7 +72,6 @@ func (p *ParserResults_html) NodeInfo(i int) string {
 	return fmt.Sprintf("<h[%d] lv%d,ch%d,%s>",
 		i, p.NodeDepths[i], p.FilePosns[i].Pos, p.NodeDebug(i))
 }
-*/
 
 /* REF
 type Node struct {
@@ -84,7 +82,7 @@ Data      string
 Namespace string
 Attr      []Attribute }
 */
-/*
+
 func (p *ParserResults_html) NodeDebug(i int) string {
 	if i >= len(p.NodeSlice) {
 		return "(indexOverrun)"
@@ -95,4 +93,4 @@ func (p *ParserResults_html) NodeDebug(i int) string {
 		h.Type, NodeTypeString[h.Type], DataOfHtmlNode(&h),
 		h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr)
 }
-*/
+

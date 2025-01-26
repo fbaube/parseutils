@@ -183,7 +183,6 @@ func (p *ParserResults_mkdn) NodeCount() int {
         return len(p.NodeSlice)
 }
 
-/*
 func (p *ParserResults_mkdn) NodeDebug(i int) string {
         if i >= len(p.NodeSlice) {
                 return "(indexOverrun)"
@@ -192,7 +191,7 @@ func (p *ParserResults_mkdn) NodeDebug(i int) string {
         return fmt.Sprintf("|%+v|", h)
         /* return fmt.Sprintf("|tp:%d:%s,data:%s,ns:%s,kids:%s,atts:%v|",
 		h.Type, NodeTypeString[h.Type], DataOfHtmlNode(&h),
-                h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr) ** //
+                h.Namespace, SU.Yn(h.FirstChild != nil), h.Attr) */
 }
 
 func (p *ParserResults_mkdn) NodeEcho(i int) string {
@@ -212,7 +211,7 @@ func (p *ParserResults_mkdn) NodeEcho(i int) string {
         n.FirstChild, n.LastChild = FC, LC
 
         return pSB.String()
-	** //
+	*/
 }
 
 func (p *ParserResults_mkdn) NodeInfo(i int) string {
@@ -222,5 +221,6 @@ func (p *ParserResults_mkdn) NodeInfo(i int) string {
         return fmt.Sprintf("<h[%d] lv%d,ch%d,%s>",
                 i, p.NodeDepths[i], p.FilePosns[i].Pos, p.NodeDebug(i))
 }
-*/
+
+
 
