@@ -178,11 +178,12 @@ func KVpairsFromAttributes_mkdn(atts []ast.Attribute) []KVpair {
 	return KVpairs
 }
 
-/*
+
 func (p *ParserResults_mkdn) NodeCount() int {
         return len(p.NodeSlice)
 }
 
+/*
 func (p *ParserResults_mkdn) NodeDebug(i int) string {
         if i >= len(p.NodeSlice) {
                 return "(indexOverrun)"

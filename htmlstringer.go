@@ -44,11 +44,11 @@ func DataOfHtmlNode(n *html.Node) string {
 	return s
 }
 
-/*
 func (p *ParserResults_html) NodeCount() int {
 	return len(p.NodeSlice)
 }
 
+/*
 func (p *ParserResults_html) NodeEcho(i int) string {
 	if i >= len(p.NodeSlice) {
 		return "(indexOverrun)"

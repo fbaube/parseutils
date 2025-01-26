@@ -19,7 +19,7 @@ require (
 	github.com/fbaube/humanbytes v0.0.0-20250119091546-d58fbfdd444c // indirect
 	github.com/fbaube/logutils v0.0.0-20240425064504-eb572963f0fc // indirect
 	github.com/fbaube/lwdx v0.0.0-20241028093627-8a7133fbc931 // indirect
-	github.com/fbaube/miscutils v0.0.0-20250121061531-3eeb9462af67 // indirect
+	github.com/fbaube/miscutils v0.0.0-20250126181629-6a2fa9af43b7 // indirect
 	github.com/fbaube/mlog v0.0.0-20240425064535-3b89e3b28a76 // indirect
 	github.com/fbaube/wasmutils v0.0.0-20231209183154-e25018375bc2 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
