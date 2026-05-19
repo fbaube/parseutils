@@ -44,11 +44,12 @@ func DataOfHtmlNode(n *html.Node) string {
 	return s
 }
 
+/*
 func (p *ParserResults_html) NodeCount() int {
 	return len(p.NodeSlice)
 }
 
-func (p *ParserResults_html) NodeEcho(i int) string {
+func (p *ParserResults_html) Echo(i int) string {
 	if i >= len(p.NodeSlice) {
 		return "(indexOverrun)"
 	}
@@ -72,6 +73,7 @@ func (p *ParserResults_html) NodeInfo(i int) string {
 	return fmt.Sprintf("<h[%d] lv%d,ch%d,%s>",
 		i, p.NodeDepths[i], p.FilePosns[i].Pos, p.NodeDebug(i))
 }
+*/
 
 /* REF
 type Node struct {

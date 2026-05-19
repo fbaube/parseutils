@@ -1,31 +1,30 @@
 module github.com/fbaube/parseutils
 
-go 1.23
-
-toolchain go1.23.1
+go 1.26.0
 
 require (
-	github.com/fbaube/ctoken v0.0.0-20250113212848-89a1656c89a4
-	github.com/fbaube/stringutils v0.0.0-20250120124849-e15d0abeb13c
-	github.com/fbaube/xmlutils v0.0.0-20250118141106-b22aff37b7ef
-	github.com/yuin/goldmark v1.7.8
-	golang.org/x/net v0.34.0
+	github.com/fbaube/ctoken v0.0.0-20251106121702-333021124221
+	github.com/fbaube/stringutils v0.0.0-20260511123541-ab996b555f8d
+	github.com/fbaube/xmlutils v0.0.0-20251106122139-7e9277a71ff9
+	github.com/yuin/goldmark v1.8.2
+	golang.org/x/net v0.54.0
 )
 
 require (
-	github.com/fatih/color v1.18.0 // indirect
-	github.com/fbaube/dsmnd v0.0.0-20250111125333-2b80f885bfc2 // indirect
-	github.com/fbaube/fileutils v0.0.0-20250108104151-64966db5071b // indirect
+	github.com/fatih/color v1.19.0 // indirect
+	github.com/fbaube/dsmnd v0.0.0-20260423181020-c1c848686981 // indirect
+	github.com/fbaube/fileutils v0.0.0-20260517055322-b852341d926f // indirect
 	github.com/fbaube/humanbytes v0.0.0-20250119091546-d58fbfdd444c // indirect
-	github.com/fbaube/logutils v0.0.0-20240425064504-eb572963f0fc // indirect
+	github.com/fbaube/logutils v0.0.0-20250316184850-0569e5bc6b6d // indirect
 	github.com/fbaube/lwdx v0.0.0-20241028093627-8a7133fbc931 // indirect
 	github.com/fbaube/miscutils v0.0.0-20250126181629-6a2fa9af43b7 // indirect
 	github.com/fbaube/mlog v0.0.0-20240425064535-3b89e3b28a76 // indirect
-	github.com/fbaube/wasmutils v0.0.0-20231209183154-e25018375bc2 // indirect
+	github.com/fbaube/wasmutils v0.0.0-20251129222829-80044fd986ff // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-isatty v0.0.22 // indirect
 	github.com/mgutz/str v1.2.0 // indirect
-	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8 // indirect
-	golang.org/x/sys v0.29.0 // indirect
+	github.com/nbio/xml v0.0.0-20260302224236-9f64bb3b5a9e // indirect
+	golang.org/x/exp v0.0.0-20260508232706-74f9aab9d74a // indirect
+	golang.org/x/sys v0.44.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
